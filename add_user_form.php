@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                     name="firstName"
                     type="text">
                     <div class="<?= $firstNameClassMessage ?>">
-                        <?=$firstNameValidation->getMessage()?>
+                        <?=$firstNameMessage?>
                     </div>
                 </div>
                 <div class="form-group">

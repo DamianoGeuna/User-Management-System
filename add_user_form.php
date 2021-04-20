@@ -1,40 +1,34 @@
 <?php
 
-    if($_SERVER['REQUEST_METHOD']==='POST'){
-        //qualcuno ha premuto aggiungi
-        // - [] Creo istanza User
-        // - [] Effettuo validazione istanza User
-        // - [] Se è tutto ok salvo utente --> si va a pagine di conferma
-                //[] Istanza del model e uso metodo create
-        // - [] Se sbagliato. rimando su form e segnalo errori
-        //posso controllare i dati e se sono giusti inserire il nuovo utente.
+require __DIR__."/vendor/TaskList/testTool.php";
+require __DIR__."/src/entity/User.php";
+require __DIR__."/src/validator/UserValidation.php";
+require __DIR__."/src/validator/ValidationResult.php";
 
-        //per ogni errore/campo bisogna far si che si ricordi le cose giuste.
-                                            // deve segnalare il campo obbligatorio
-                                            //proprietà is valid è false
-                                            //codice di errore
+//require "autoload.php";//spiega a php come prendere le classi
 
-        $user = userFactory :: fromArray($_POST);
-        $userValidation = new UserValidation($user);
-        $userValidation ->validate();
+if($_SERVER['REQUEST_METHOD']==='GET'){
 
-        if($userValidation->validate())
-        {
-            $userModel=new UserModel();
-            $userModel->create($user);
-
-            //redirect alla conferma  dell'iscrizione e grazie per esserti iscritto.
-        };
+    $firstName= '';
+    $firstNameClass='';
+    $firstNameClassMessage='';
+    $firstNameMessage='';
 
 
-        $firstNameValidationResult=$userValidation->firstNameValid;
+}
 
+if($_SERVER['REQUEST_METHOD']==='POST'){
 
+    $user=new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['birthday']);
+    $val=new UserValidation($user);
+    $firstNameValidation = $val->getError('firstName');
 
+    $firstName = $user->getFirstName();
+    $firstNameClass=$firstNameValidation->getIsValid()?'is-valid':'is-invalid';
+    $firstNameClassMessage=$firstNameValidation->getIsValid()?'valid-feedback':'invalid-feedback';
+    $firstNameMessage=$firstNameValidation->getMessage();
 
-
-
-    }
+}
 
 ?>
 
@@ -58,21 +52,33 @@
 
         <div class="container">
             <form action="add_user_form.php" method="POST">
+
                 <div class="form-group">
                     <label for="">Nome</label>
-                    <!--Mettere is invalid-->
-                    <input class="form-control <??>" name="firstName" type="text">
-                    <div class="invalid-feedback">Il nome è obbligatorio</div>
+                    <input
+                    value="<?= $firstName ?>"
+                    class="form-control <?= $firstNameClass?>"
+                    name="firstName"
+                    type="text">
+                    <div class="<?= $firstNameClassMessage ?>">
+                        <?=$firstNameValidation->getMessage()?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="">Cognome</label>
-                    <input class="form-control" name="lastName" type="text">
-                    <div class="invalid-feedback">Il cognome è obbligatorio</div>
+                    <input value="<?php $lastNameValidation?>"
+                     class="form-control<?= $lastNameValidation->getIsValid() ? 'is-valid' : 'is-invalid'?>" 
+                     name="lastName" 
+                     type="text">
+                    <div class="<?= $lastNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback'?>"><?= $emailValidation->getIsValid()?> </div>
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input class="form-control" name="email" type="text">
-                    <div class="invalid-feedback">La email è obbligatoria</div>
+                    <input value="<?php $email?>"
+                     class="form-control<?= $emailValidation->getIsValid() ? 'is-valid' : 'is-invalid'?>" 
+                     name="email" 
+                     type="text">
+                    <div class="<?= $emailValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback'?>"><?= $emailValidation->getIsValid()?> </div>
                 </div>
                 <div class="form-group">
                     <label for="">Data di Nascita</label>

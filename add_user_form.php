@@ -11,6 +11,16 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
     $firstNameClass = '';
     $firstNameClassMessage = '';
     $firstNameMessage = '';
+
+    $lastName = '';
+    $lastNameClass = '';
+    $lastNameClassMessage = '';
+    $lastNameMessage = '';
+
+    $email = '';
+    $emailClass = '';
+    $emailClassMessage = '';
+    $emailMessage = '';
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -22,6 +32,24 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
     $firstNameClassMessage = $firstNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
     $firstNameMessage = $firstNameValidation->getMessage();
+
+    $lastNameValidation = $val->getError('lastName');
+
+    $lastName = $user->getLastName();
+    $lastNameClass = $lastNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    $lastNameClassMessage = $lastNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    $lastNameMessage = $lastNameValidation->getMessage();
+
+    $emailValidation = $val->getError('email');
+
+    $email = $user->getEmail();
+    $emailClass = $emailValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    $emailClassMessage = $emailValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    $emailMessage = $emailValidation->getMessage();
+
+
+
+
 }
 
 
@@ -43,6 +71,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     </header>
     <div class="container">
         <form action="add_user_form.php" method="POST">
+
             <div class="form-group">
                <label for="">Nome</label>
                <!-- is-invalid  -->
@@ -55,14 +84,26 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                   <?= $firstNameMessage ?>
                </div> 
             </div>
+
             <div class="form-group">
                 <label for="">Cognome</label>
+                <input
+                value="<?= $lastName ?>" 
+                class="form-control <?= $lastNameClass ?>"  
+                name="lastName"  
+                type="text">
+                <div class="<?= $lastNameClassMessage ?>">
+                    <?= $lastNameMessage ?>
+                </div>
+               <!--
                 <input class="form-control" name="lastName" type="text">
                 <div class="invalid-feedback">
                     il cognome è obbligatorio
                 </div> 
-             </div>
-             <div class="form-group">
+               -->
+            </div>
+            
+            <div class="form-group">
                 <label for="">email</label>
                 <input class="form-control"  name="email" type="text"> 
                 <div class="invalid-feedback">
@@ -71,7 +112,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 <div class="invalid-feedback">
                     email obbligatoria
                 </div>
-             </div>
+            </div>
+
              <div class="form-group">
                 <label for="">data di nascita</label>
                 <input class="form-control" name="birthday" type="date">

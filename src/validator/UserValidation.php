@@ -9,6 +9,9 @@ class UserValidation {
     public const LAST_NAME_ERROR_NONE_MSG = 'Cognome Corretto';
     public const LAST_NAME_ERROR_REQUIRED_MSG = 'Il cognome è obbligatorio';
 
+    public const EMAIL_ERROR_NONE_MSG = 'Email Corretta';
+    public const EMAIL_ERROR_REQUIRED_MSG = 'La email è obbligatoria';
+
     private $user;
     private $errors = [] ;// Array<ValidationResult>;
     private $isValid = true;

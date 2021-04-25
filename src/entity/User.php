@@ -1,24 +1,21 @@
 <?php
+
 //Questa è una classe
 
-class User{
+class User {
+
     private $userId;
     private $firstName;
     private $lastName;
     private $email;
     private $birthday;
 
-
-
-    public function __construct($firstName,$lastName,$email,$birthday){
-        $this->firstName=$firstName;   
-        $this->lastName=$lastName;   
-        $this->email=$email;   
-        $this->birthday=$birthday;   
+    public function __construct($firstName,$lastName,$email,$birthday) {
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->email = $email;
+        $this->birthday = $birthday;
     }
-
-
-
     /**
      * Get the value of userId
      */ 
@@ -120,5 +117,12 @@ class User{
     }
 }
 
-//$mario = new User();
-//$mario->setFirstName('Mario')->setLastName('Rossi');
+  /*
+  $mario = new User();
+  $mario->setfirstName('Mario');
+  $mario->setLastName('Rossi');
+  
+  $mario = new User();
+  $mario->setfirstName('Mario')->setLastName('Rossi');
+*/   
+        ;

@@ -1,72 +1,41 @@
 @startuml
 
-class User
-{
+class User {
     - userId
-    -firstName
-    -lastName
-    -email
-    -birthday
+    - firstName
+    - lastName
+    - email
+    - birthday
 }
 
-class UserModel
-{
-    -create(User)
+class UserModel {
+    - create(User)
 }
 
-class userFactory
-{
-    + static fromArray(array $user):user
+class UserFactory {
+    + static fromArray(array $user):User
 }
 
-class UserValidation
-{   
+class UserValidation {
     User user
-    Array <ValidationResult> result
+    Array<ValidationResult> error
+    // true se tutto l'oggetto è corretto
+    // false se ho un errore
     bool isValid 
     + UserValidation(User user)
     + validate();
-
-    -firstNameValid:ValidationResult
-    -lastNameValid:ValidationResult
-
-
-    + UserValidation(User user)
-    - isRequiredFirstName():ValidationResult
-    - isRequiredlasttName():ValidationResult
-    - isRequiredEmail():ValidationResult
+    - isRequiredFirstName()
+    - isRequiredLastName()
+    - isRequiredEmail() 
     + getIsValid()
-    + getErrors():array<ValidationResult>
+    + getError():array<ValidationResult>
 }
 
-class ValidationResult
-{
-    
-    + message:string
-    + isValid:bool
-    + value:any
+class ValidationResult {
+    + ValidationResult($message,$isValid,$value)
+    + message: string
+    + isValid: bool
+    + value: any
 }
-
-
-
 
 @enduml
-
-
-$elencovalidazione = []
-
-//$val->addName('email)
-$elencovalidazione['email']=[
-    'value'=>'mail@it',
-    'pattern'=>'email',
-    'required'=>true
-
-]
-$elencovalidazione['age']=[
-    'value'=>'29',
-    'min'=>'18',
-    'max'=>'99',
-    'pattern'=>'email',
-    'required'=>true
-
-]

@@ -1,37 +1,32 @@
-<?php
-
-require __DIR__."/vendor/TaskList/testTool.php";
+<?php 
+//require "autoload.php"; //spiega a php come prendere le classi
+require __DIR__."/vendor/testTools/testTool.php";
 require __DIR__."/src/entity/User.php";
 require __DIR__."/src/validator/UserValidation.php";
 require __DIR__."/src/validator/ValidationResult.php";
 
-//require "autoload.php";//spiega a php come prendere le classi
-
+// print_r($_POST);
 if($_SERVER['REQUEST_METHOD']==='GET'){
-
-    $firstName= '';
-    $firstNameClass='';
-    $firstNameClassMessage='';
-    $firstNameMessage='';
-
-
+    $firstName = '';
+    $firstNameClass = '';
+    $firstNameClassMessage = '';
+    $firstNameMessage = '';
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
-
-    $user=new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['birthday']);
-    $val=new UserValidation($user);
+    $user = new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['birthday']);
+    $val = new UserValidation($user);
     $firstNameValidation = $val->getError('firstName');
 
     $firstName = $user->getFirstName();
-    $firstNameClass=$firstNameValidation->getIsValid()?'is-valid':'is-invalid';
-    $firstNameClassMessage=$firstNameValidation->getIsValid()?'valid-feedback':'invalid-feedback';
-    $firstNameMessage=$firstNameValidation->getMessage();
-
+    $firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    $firstNameClassMessage = $firstNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    $firstNameMessage = $firstNameValidation->getMessage();
 }
 
-?>
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,52 +38,46 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 </head>
 <body>
-
-   
-    <div>
-        <header>
-            USM
-        </header>
-
-        <div class="container">
-            <form action="add_user_form.php" method="POST">
-
-                <div class="form-group">
-                    <label for="">Nome</label>
-                    <input
-                    value="<?= $firstName ?>"
-                    class="form-control <?= $firstNameClass?>"
-                    name="firstName"
-                    type="text">
-                    <div class="<?= $firstNameClassMessage ?>">
-                        <?=$firstNameMessage?>
-                    </div>
+    <header>
+            USM 
+    </header>
+    <div class="container">
+        <form action="add_user_form.php" method="POST">
+            <div class="form-group">
+               <label for="">Nome</label>
+               <!-- is-invalid  -->
+               <input
+                value="<?= $firstName ?>" 
+                class="form-control <?= $firstNameClass ?>"  
+                name="firstName"  
+                type="text">
+               <div class="<?= $firstNameClassMessage ?>">
+                  <?= $firstNameMessage ?>
+               </div> 
+            </div>
+            <div class="form-group">
+                <label for="">Cognome</label>
+                <input class="form-control" name="lastName" type="text">
+                <div class="invalid-feedback">
+                    il cognome è obbligatorio
+                </div> 
+             </div>
+             <div class="form-group">
+                <label for="">email</label>
+                <input class="form-control"  name="email" type="text"> 
+                <div class="invalid-feedback">
+                    email errata
                 </div>
-                <div class="form-group">
-                    <label for="">Cognome</label>
-                    <input value="<?php $lastNameValidation?>"
-                     class="form-control<?= $lastNameValidation->getIsValid() ? 'is-valid' : 'is-invalid'?>" 
-                     name="lastName" 
-                     type="text">
-                    <div class="<?= $lastNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback'?>"><?= $emailValidation->getIsValid()?> </div>
+                <div class="invalid-feedback">
+                    email obbligatoria
                 </div>
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input value="<?php $email?>"
-                     class="form-control<?= $emailValidation->getIsValid() ? 'is-valid' : 'is-invalid'?>" 
-                     name="email" 
-                     type="text">
-                    <div class="<?= $emailValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback'?>"><?= $emailValidation->getIsValid()?> </div>
-                </div>
-                <div class="form-group">
-                    <label for="">Data di Nascita</label>
-                    <input class="form-control" name="birthday" type="date">
-                    <div class="invalid-feedback">La data di nascita è obbligatoria</div>
-                </div>
-
-                <button class="btn btn-primary mt-3" type="submit">Aggiungi</button>
-            </form>
-        </div>
+             </div>
+             <div class="form-group">
+                <label for="">data di nascita</label>
+                <input class="form-control" name="birthday" type="date">
+             </div>
+             <button class="btn btn-primary mt-3" type="submit">Aggiungi</button>
+        </form>
     </div>
 </body>
 </html>

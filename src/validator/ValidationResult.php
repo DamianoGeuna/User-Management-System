@@ -1,18 +1,18 @@
-<?php 
-
-class ValidationResult
-{
-
-    public $message;
-    public $isValid;
-    public $value;
+<?php
+/**
+ *  + message: string
+    + isValid: bool
+    + value: any
+ */
+class ValidationResult {
+    private $message ;
+    private $isValid ;
+    private $value;
     
     public function __construct($message,$isValid,$value) {
-        $this-> message = $message;
-        $this-> isValid = $isValid;
-        $this-> value = $value;
-        
-        
+        $this->message = $message;
+        $this->isValid = $isValid;
+        $this->value = $value;
     }
     
 

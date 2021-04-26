@@ -4,23 +4,28 @@ require __DIR__."/vendor/testTools/testTool.php";
 require __DIR__."/src/entity/User.php";
 require __DIR__."/src/validator/UserValidation.php";
 require __DIR__."/src/validator/ValidationResult.php";
+require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php";
 
 // print_r($_POST);
 if($_SERVER['REQUEST_METHOD']==='GET'){
+    
+    //list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::defaultValues();
+
     $firstName = '';
     $firstNameClass = '';
     $firstNameClassMessage = '';
     $firstNameMessage = '';
 
-    $lastName = '';
+    /* $lastName = '';
     $lastNameClass = '';
     $lastNameClassMessage = '';
-    $lastNameMessage = '';
+    $lastNameMessage = ''; */
 
-    $email = '';
+    /* $email = '';
     $emailClass = '';
     $emailClassMessage = '';
-    $emailMessage = '';
+    $emailMessage = ''; */
+
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -28,24 +33,26 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $val = new UserValidation($user);
     $firstNameValidation = $val->getError('firstName');
 
-    $firstName = $user->getFirstName();
-    $firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
-    $firstNameClassMessage = $firstNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
-    $firstNameMessage = $firstNameValidation->getMessage();
+    list($firstName, $firstNameClass, $firstNameClassMessage, $firstNameMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
 
-    $lastNameValidation = $val->getError('lastName');
+    ValidationFormHelper::getValidationClass($firstNameValidation);
 
-    $lastName = $user->getLastName();
-    $lastNameClass = $lastNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
-    $lastNameClassMessage = $lastNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
-    $lastNameMessage = $lastNameValidation->getMessage();
+    //$firstName = $user->getFirstName();
+    //$firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    //$firstNameClassMessage = $firstNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    //$firstNameMessage = $firstNameValidation->getMessage();
 
-    $emailValidation = $val->getError('email');
+    //$lastNameValidation = $val->getError('lastName');
+    //$lastName = $user->getLastName();
+    //$lastNameClass = $lastNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    //$lastNameClassMessage = $lastNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    //$lastNameMessage = $lastNameValidation->getMessage();
 
-    $email = $user->getEmail();
-    $emailClass = $emailValidation->getIsValid() ? 'is-valid' : 'is-invalid';
-    $emailClassMessage = $emailValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
-    $emailMessage = $emailValidation->getMessage();
+    //$emailValidation = $val->getError('email');
+    //$email = $user->getEmail();
+    //$emailClass = $emailValidation->getIsValid() ? 'is-valid' : 'is-invalid';
+    //$emailClassMessage = $emailValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
+    //$emailMessage = $emailValidation->getMessage();
 
 
 
@@ -87,20 +94,20 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
             <div class="form-group">
                 <label for="">Cognome</label>
-                <input
+                <!-- <input
                 value="<?= $lastName ?>" 
                 class="form-control <?= $lastNameClass ?>"  
                 name="lastName"  
                 type="text">
                 <div class="<?= $lastNameClassMessage ?>">
                     <?= $lastNameMessage ?>
-                </div>
-               <!--
+                </div> -->
+               
                 <input class="form-control" name="lastName" type="text">
                 <div class="invalid-feedback">
                     il cognome è obbligatorio
                 </div> 
-               -->
+              
             </div>
             
             <div class="form-group">

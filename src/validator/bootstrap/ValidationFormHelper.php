@@ -18,9 +18,15 @@ class ValidationFormHelper{
         //$firstNameMessage = $firstNameValidation->getMessage();
     }
 
-    public static function getDefault()
+    public static function getDefault($defaultValue='')
     {
-        
+        $value = $defaultValue;
+        $formControlClass = '';
+        $classMessage = '';
+        $message = '';
+
+        return[$value, $formControlClass, $classMessage, $message];
+
     }
 
 }

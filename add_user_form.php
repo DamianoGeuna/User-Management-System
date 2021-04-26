@@ -9,12 +9,12 @@ require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php";
 // print_r($_POST);
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
-    //list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::defaultValues();
+    list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::getDefault();
 
-    $firstName = '';
+    /* $firstName = '';
     $firstNameClass = '';
     $firstNameClassMessage = '';
-    $firstNameMessage = '';
+    $firstNameMessage = '';*/
 
     /* $lastName = '';
     $lastNameClass = '';
@@ -35,7 +35,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
     list($firstName, $firstNameClass, $firstNameClassMessage, $firstNameMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
 
-    ValidationFormHelper::getValidationClass($firstNameValidation);
+    if($val->getIsValid()){
+        //TODO
+        echo "Salva utente";
+    }
 
     //$firstName = $user->getFirstName();
     //$firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';

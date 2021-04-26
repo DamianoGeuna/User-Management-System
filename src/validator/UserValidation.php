@@ -28,12 +28,19 @@ class UserValidation {
     private function validate()
     {   
         //$this->firstNameResult =  $this->validateFirstName();
-        $result = $this->validateFirstName();
-        $this->errors['firstName'] = $result; //
+        $this->errors['firstName'] = $this->validateFirstName();
+        //$this->errors['lastName'] = $this->validateLastName();
+        //$this->errors['Email'] = $this->validateEmail();
+        //$this->errors['Birthday'] = $this->validateBirthday(); Non sarebbe obbligatorio, da aggiungere
 
-        if(!$result->getIsValid()){
-             $this->isValid = false;   
+    }
+
+    public function getIsValid(){
+        $this->isValid = true;
+        foreach ($this->errors as $validationResult) {
+            $this->isValid = $this->isValid && $validationResult->getIsValid();
         }
+        return $this->isValid;
     }
 
     private function validateFirstName():?ValidationResult

@@ -2,6 +2,8 @@
 
 //Questa è una classe
 
+namespace ciccio\pasticcio;
+
 class User {
 
     private $userId;

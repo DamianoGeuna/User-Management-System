@@ -10,7 +10,7 @@ require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php";
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
     list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::getDefault();
-    list($lastName,$lastNameClass,$lastClassMessage,$lastMessage)=ValidationFormHelper::getDefault();
+    list($lastName,$lastNameClass,$lastClassMessage,$lastNameMessage)=ValidationFormHelper::getDefault();
     list($email,$emailClass,$emailClassMessage,$emailMessage)=ValidationFormHelper::getDefault();
 
     /* $firstName = '';

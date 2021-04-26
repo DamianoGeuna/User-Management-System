@@ -2,7 +2,7 @@
 
 //Questa è una classe
 
-namespace ciccio\pasticcio;
+namespace entity;//caratterizza la classe (stesso nome cartella)
 
 class User {
 

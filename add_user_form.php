@@ -10,6 +10,8 @@ require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php";
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
     list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::getDefault();
+    list($lastName,$lastNameClass,$lastClassMessage,$lastMessage)=ValidationFormHelper::getDefault();
+    list($email,$emailClass,$emailClassMessage,$emailMessage)=ValidationFormHelper::getDefault();
 
     /* $firstName = '';
     $firstNameClass = '';
@@ -31,9 +33,15 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $user = new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['birthday']);
     $val = new UserValidation($user);
-    $firstNameValidation = $val->getError('firstName');
 
+    $firstNameValidation = $val->getError('firstName');
     list($firstName, $firstNameClass, $firstNameClassMessage, $firstNameMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
+
+    $lastNameValidation = $val->getError('lastName');
+    list($lastName, $lastNameClass, $lastNameClassMessage, $lastNameMessage)=ValidationFormHelper::getValidationClass($lastNameValidation);
+
+    $emailValidation = $val->getError('email');
+    list($email, $emailClass, $emailClassMessage, $emailMessage)=ValidationFormHelper::getValidationClass($emailValidation);
 
     if($val->getIsValid()){
         //TODO
@@ -84,7 +92,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
             <div class="form-group">
                <label for="">Nome</label>
-               <!-- is-invalid  -->
                <input
                 value="<?= $firstName ?>" 
                 class="form-control <?= $firstNameClass ?>"  
@@ -92,36 +99,31 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 type="text">
                <div class="<?= $firstNameClassMessage ?>">
                   <?= $firstNameMessage ?>
-               </div> 
+               </div>
             </div>
 
             <div class="form-group">
                 <label for="">Cognome</label>
-                <!-- <input
+                <input
                 value="<?= $lastName ?>" 
                 class="form-control <?= $lastNameClass ?>"  
                 name="lastName"  
                 type="text">
                 <div class="<?= $lastNameClassMessage ?>">
                     <?= $lastNameMessage ?>
-                </div> -->
-               
-                <input class="form-control" name="lastName" type="text">
-                <div class="invalid-feedback">
-                    il cognome è obbligatorio
-                </div> 
-              
+                </div>              
             </div>
             
             <div class="form-group">
-                <label for="">email</label>
-                <input class="form-control"  name="email" type="text"> 
-                <div class="invalid-feedback">
-                    email errata
-                </div>
-                <div class="invalid-feedback">
-                    email obbligatoria
-                </div>
+                <label for="">Email</label>
+                <input
+                value="<?= $email ?>" 
+                class="form-control <?= $emailClass ?>"  
+                name="email"  
+                type="text">
+               <div class="<?= $emailClassMessage ?>">
+                  <?= $emailMessage ?>
+               </div>
             </div>
 
              <div class="form-group">

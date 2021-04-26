@@ -6,8 +6,12 @@ class UserValidation {
     public const FIRST_NAME_ERROR_NONE_MSG = 'Il nome è corretto';
     public const FIRST_NAME_ERROR_REQUIRED_MSG = 'Il nome è obbligatorio';
 
-    //public const LAST_NAME_ERROR_NONE_MSG = 'Cognome Corretto';
-    //public const LAST_NAME_ERROR_REQUIRED_MSG = 'Il cognome è obbligatorio';
+    public const LAST_NAME_ERROR_NONE_MSG = 'Cognome Corretto';
+    public const LAST_NAME_ERROR_REQUIRED_MSG = 'Il cognome è obbligatorio';
+
+    public const EMAIL_ERROR_NONE_MSG = 'Email Corretta';
+    public const EMAIL_ERROR_REQUIRED_MSG = 'Non hai inserito la mail';
+    public const EMAIL_FORM_ERROR_REQUIRED_MSG = 'Formato Email errato';
 
     //public const EMAIL_ERROR_NONE_MSG = 'Email Corretta';
     //public const EMAIL_ERROR_REQUIRED_MSG = 'La email è obbligatoria';
@@ -29,8 +33,8 @@ class UserValidation {
     {   
         //$this->firstNameResult =  $this->validateFirstName();
         $this->errors['firstName'] = $this->validateFirstName();
-        //$this->errors['lastName'] = $this->validateLastName();
-        //$this->errors['Email'] = $this->validateEmail();
+        $this->errors['lastName'] = $this->validateLastName();
+        $this->errors['email'] = $this->validateemail();
         //$this->errors['Birthday'] = $this->validateBirthday(); Non sarebbe obbligatorio, da aggiungere
 
     }
@@ -66,7 +70,7 @@ class UserValidation {
         }
     } */
 
-    /* private function validatelastName():?ValidationResult
+    private function validatelastName():?ValidationResult
     {
         $lastName = trim($this->user->getLastName());
         
@@ -76,14 +80,24 @@ class UserValidation {
             $validationResult = new ValidationResult(self::LAST_NAME_ERROR_NONE_MSG,true,$lastName);
         };
         return $validationResult;
-    } */
+    }
 
-    /**
-     *  foreach($userValidation->getErrors() as $error ){
-     *   echo "<li</li>"
-     *  }
-     * 
-     */
+    private function validateemail():?ValidationResult
+    {
+        $email = trim($this->user->getEmail());
+        
+        if(empty($email)){
+            $validationResult = new ValidationResult(self::EMAIL_ERROR_REQUIRED_MSG,false,$email);
+        } elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+            $validationResult = new ValidationResult(self::EMAIL_FORM_ERROR_REQUIRED_MSG,false,$email);
+        } else {
+            $validationResult = new ValidationResult(self::EMAIL_ERROR_NONE_MSG,true,$email);
+        };
+        return $validationResult;
+    }
+
+
+
     public function getErrors()
     {
         return $this->errors; 

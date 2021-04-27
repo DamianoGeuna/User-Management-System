@@ -1,5 +1,8 @@
 <?php
 
+namespace geunadamiano\usm\validator;
+
+use geunadamiano\usm\entity\User;
 
 class UserValidation {
 

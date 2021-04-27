@@ -1,5 +1,10 @@
 <?php
 
+namespace geunadamiano\usm\model;
+
+use geunadamiano\usm\entity\User;
+use \PDO;
+
 class UserModel
 {
 

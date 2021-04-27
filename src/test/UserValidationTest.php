@@ -1,4 +1,8 @@
 <?php
+
+use geunadamiano\usm\entity\User;
+use geunadamiano\usm\validator\UserValidation;
+
 require __DIR__."/../../vendor/testTools/testTool.php";
 require __DIR__."/../entity/User.php";
 require __DIR__."/../validator/UserValidation.php";

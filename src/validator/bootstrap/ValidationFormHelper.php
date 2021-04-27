@@ -1,5 +1,9 @@
 <?php
 
+namespace geunadamiano\usm\validator\bootstrap;
+
+use geunadamiano\usm\validator\ValidationResult;
+
 class ValidationFormHelper{
 
     public static function getValidationClass(ValidationResult $validationResult)

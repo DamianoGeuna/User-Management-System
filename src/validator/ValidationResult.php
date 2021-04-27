@@ -1,9 +1,12 @@
 <?php
+ namespace geunadamiano\usm\validator;
+ 
 /**
  *  + message: string
     + isValid: bool
     + value: any
  */
+
 class ValidationResult {
     private $message ;
     private $isValid ;

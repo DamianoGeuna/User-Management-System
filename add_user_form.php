@@ -1,5 +1,5 @@
 <?php 
-//require "autoload.php"; //spiega a php come prendere le classi
+require "/__autoload.php"; //spiega a php come prendere le classi
 require __DIR__."/vendor/testTools/testTool.php";
 require __DIR__."/src/entity/User.php";
 require __DIR__."/src/validator/UserValidation.php";

@@ -2,8 +2,10 @@
 
 //Questa è una classe
 
-//namespace entity;//caratterizza la classe (stesso nome cartella)
+namespace geunadamiano\usm\entity;//caratterizza la classe (stesso nome cartella)
 
+//namespace app\usm\entity; per indicare quella principale in genere
+//namespace src\entity;  andrebbe bene anche questa
 class User {
 
     private $userId;

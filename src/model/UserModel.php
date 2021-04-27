@@ -48,7 +48,8 @@ class UserModel
     public function update()
     {
     }
-    public function delete()
+    public function delete($id)
     {
+
     }
 }

@@ -16,7 +16,7 @@ use corso_formarete;
 describe user;
 
 
-/*insert into user (firstName,lastName,email,birthday)
-values ('Mario','Rossi','email@email.com','1980-12-01');*/
+/* insert into user (firstName,lastName,email,birthday)
+values ('Mario','Rossi','email@email.com','1980-12-01'); */
 
 select * from user;

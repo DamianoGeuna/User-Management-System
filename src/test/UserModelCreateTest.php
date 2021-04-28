@@ -1,5 +1,8 @@
 <?php
 
+use geunadamiano\usm\entity\User;
+use geunadamiano\usm\model\UserModel;
+
 require __DIR__."/../entity/User.php";
 require __DIR__."/../model/UserModel.php";
 

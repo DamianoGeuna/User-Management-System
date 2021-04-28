@@ -17,8 +17,8 @@
         <td>Roberto</td>
         <td>Rossi</td>
         <td>
-            <a href="" class="btn btn-secondary"> edit </a>
-            <a href="delete_user.php?user_id=10" class="btn btn-danger"> delete </a>
+            <a href="" class="btn btn-secondary">edit </a>
+            <a href="delete_user.php?user_id=10" class="btn btn-danger">delete </a>
         </td>
     </tr>
 

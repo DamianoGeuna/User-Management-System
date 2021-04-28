@@ -1,4 +1,7 @@
 <?php
+
+use geunadamiano\usm\entity\User;
+
 require './src/entity/User.php';
 try {
     // READ / LIST

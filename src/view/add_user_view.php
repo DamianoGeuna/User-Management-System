@@ -41,11 +41,19 @@
                </div>
             </div>
 
-             <div class="form-group">
-                <label for="">data di nascita</label>
-                <input class="form-control" name="birthday" type="date">
-             </div>
-             <button class="btn btn-primary mt-3" type="submit">Aggiungi</button>
+            <div class="form-group">
+                <label for="">Data di nascita</label>
+                <input
+                value="<?= $birthday ?>" 
+                class="form-control <?= $birthdayClass ?>"  
+                name="birthday"  
+                type="date">
+               <div class="<?= $birthdayClassMessage ?>">
+                  <?= $birthdayMessage ?>
+               </div>
+            </div>
+
+            <button class="btn btn-primary mt-3" type="submit">Aggiungi</button>
         </form>
     </div>
 </body>

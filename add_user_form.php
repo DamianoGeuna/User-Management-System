@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     list($email, $emailClass, $emailClassMessage, $emailMessage)=ValidationFormHelper::getValidationClass($emailValidation);
 
     $birthdayValidation = $val->getError('birthday');
-    list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
+    list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage)=ValidationFormHelper::getValidationClass($birthdayValidation);
 
     if($val->getIsValid()){
 

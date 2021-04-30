@@ -1,7 +1,7 @@
 # Validazine
   - [ ] completare la validazione del **User**
-      - [ ] lastName
-      - [ ] email 
+      - [-] lastName
+      - [-] email 
       - [ ] valore predefinito per la data   
   
   # Model

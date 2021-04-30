@@ -16,8 +16,9 @@ class UserValidation {
     public const EMAIL_ERROR_REQUIRED_MSG = 'Non hai inserito la mail';
     public const EMAIL_FORM_ERROR_REQUIRED_MSG = 'Formato Email errato';
 
-    //public const EMAIL_ERROR_NONE_MSG = 'Email Corretta';
-    //public const EMAIL_ERROR_REQUIRED_MSG = 'La email è obbligatoria';
+    public const DATA_ERROR_NONE_MSG = 'Data Inserita';
+    public const DATA_ERROR_REQUIRED_MSG = 'Non hai inserito la tua data di nascita';
+
 
     private $user;
     private $errors = [] ;// Array<ValidationResult>;
@@ -26,6 +27,7 @@ class UserValidation {
     public $firstNameResult;
     public $lastNameResult;
     public $emailResult;
+    public $birthdayResult;
 
     public function __construct(User $user) {
         $this->user = $user;
@@ -38,7 +40,7 @@ class UserValidation {
         $this->errors['firstName'] = $this->validateFirstName();
         $this->errors['lastName'] = $this->validateLastName();
         $this->errors['email'] = $this->validateemail();
-        //$this->errors['Birthday'] = $this->validateBirthday(); Non sarebbe obbligatorio, da aggiungere
+        $this->errors['birthday'] = $this->validatebirthday(); //Non sarebbe obbligatorio, da aggiungere
 
     }
 
@@ -62,17 +64,6 @@ class UserValidation {
         return $validationResult;
     }
 
-    /* private function validatelastName()
-    {   
-        //$this->firstNameResult =  $this->validateFirstName();
-        $result = $this->validatelastName();
-        $this->errors['lastName'] = $result; //
-
-        if(!$result->getIsValid()){
-             $this->isValid = false;   
-        }
-    } */
-
     private function validatelastName():?ValidationResult
     {
         $lastName = trim($this->user->getLastName());
@@ -95,6 +86,20 @@ class UserValidation {
             $validationResult = new ValidationResult(self::EMAIL_FORM_ERROR_REQUIRED_MSG,false,$email);
         } else {
             $validationResult = new ValidationResult(self::EMAIL_ERROR_NONE_MSG,true,$email);
+        };
+        return $validationResult;
+    }
+
+    private function validatebirthday():?ValidationResult
+    {
+        $birthday = $this->user->getBirthday();
+
+        if(empty($birthday)){
+            echo("Vuoto!");
+            $validationResult = new ValidationResult(self::DATA_ERROR_REQUIRED_MSG,false,$birthday);
+        } else {
+            echo("Pieno!");
+            $validationResult = new ValidationResult(self::DATA_ERROR_NONE_MSG,true,$birthday);
         };
         return $validationResult;
     }

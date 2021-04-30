@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
     list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::getDefault();
     list($lastName,$lastNameClass,$lastClassMessage,$lastNameMessage)=ValidationFormHelper::getDefault();
     list($email,$emailClass,$emailClassMessage,$emailMessage)=ValidationFormHelper::getDefault();
+    list($birthday,$birthdayClass,$birthdayClassMessage,$birthdayMessage)=ValidationFormHelper::getDefault();
 
 }
 
@@ -35,12 +36,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $emailValidation = $val->getError('email');
     list($email, $emailClass, $emailClassMessage, $emailMessage)=ValidationFormHelper::getValidationClass($emailValidation);
 
+    $birthdayValidation = $val->getError('birthday');
+    list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
+
     if($val->getIsValid()){
 
         //echo "Salva utente";
         $userModel=new UserModel();
         $userModel->create($user);
-        //header('location: ./list_users.php');//header-->redirect
+        header('location: ./list_users.php');//header-->redirect
     }
 
     //$firstName = $user->getFirstName();

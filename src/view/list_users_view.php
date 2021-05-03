@@ -1,27 +1,34 @@
 <?php include './src/view/head.php'?>
 <?php include './src/view/header.php'?>
 
+
 <div class="container">
 
 <table class="table">
     <tr>
-        <th>id</th>
-        <th>nome</th>
-        <th>cognome</th>
-        <th>action</th>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Email</th>
+        <th>Birthday</th>
     
     </tr>
 
+    <?php
+    foreach ($users as $user) {?>
     <tr>
-        <td>10</td>
-        <td>Roberto</td>
-        <td>Rossi</td>
+        <td><?= $user->getUserId() ?></td>
+        <td><?= $user->getFirstName() ?></td>
+        <td><?= $user->getLastName() ?></td>
+        <td><?= $user->getEmail() ?></td>
+        <td><?= $user->getBirthday() ?></td>
         <td>
-            <a href="" class="btn btn-secondary">edit </a>
-            <a href="delete_user.php?user_id=10" class="btn btn-danger">delete </a>
+            <a href="edit_user.php?user_id=<?= $user->getUserId() ?>" class="btn btn-secondary">edit</a>
+            <a href="delete_user.php?user_id=<?= $user->getUserId() ?>" class="btn btn-danger">delete </a>
         </td>
     </tr>
 
+    <?php } ?>
 
 </table>
 

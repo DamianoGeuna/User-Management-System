@@ -2,7 +2,9 @@
 <?php include './src/view/header.php'?>
 
 
-    <div class="container">
+    <div class="container"><!-- valore diverso da dove partiamo-->
+    <!--form action"$action=add_user_form.php, va su se stessa"
+    mettendo action="$action" in base a clicco si modifica-->
         <form action="add_user_form.php" method="POST">
 
             <div class="form-group">

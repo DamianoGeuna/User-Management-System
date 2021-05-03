@@ -14,6 +14,7 @@ class UserModel
     {//qualcosa potrebbe andare storto
         try {
             $this->conn = new PDO('mysql:dbname=corso_formarete;host=localhost', 'root', '');//parametri di connessione presi da prima
+            //$this->conn->setAttribute(PDO::ATTR)
         } catch (\PDOException $e) {
             // TODO: togliere echo
             echo $e->getMessage();
@@ -42,14 +43,53 @@ class UserModel
     }
 
 
-    public function read()
+    public function readall()
     {
-    }
-    public function update()
-    {
-    }
-    public function delete($id)
-    {
+        $sql = "select * from User;";//ottengo tutti gli utenti
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->execute();//eseguo e tiene in memoria.
 
+        //$pdostm->fetchAll(PDO::FETCH_CLASS,'geunadamiano\usm\entity\User'::class);
+        return $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,User::class,['','','','']);//chiamare proprietà statica
+    }
+
+    public function readOne()
+    {
+        $sql = "select from User where userId=:user_id";
+    }
+
+
+    public function update(User $user)
+    {
+        $sql = "UPDATE User set firstName = :firstName,
+                                lastName = :lastName,
+                                email = :email,
+                                birthday = :birthday
+                                WHERE userId=:user_id;";
+
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue(':firstName', $user->getFirstName(), PDO::PARAM_STR);
+        $pdostm->bindValue(':lastName', $user->getLastName(), PDO::PARAM_STR);
+        $pdostm->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+        $pdostm->bindValue(':birthday', $user->getBirthday(), PDO::PARAM_STR);
+        $pdostm->bindValue(':user_id', $user->getUserId());
+
+    }
+
+
+    public function delete(int $user_id):bool
+    {
+        $sql = "delete from User where userId=:user_id ";
+
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue(':user_id',$user_id,PDO::PARAM_INT);//parametro che sto passando lo tratto come intero
+        $pdostm->execute();
+
+        if ($pdostm->rowCount() === 0)
+        {
+            return false;
+        }else{
+            return true;
+        };
     }
 }

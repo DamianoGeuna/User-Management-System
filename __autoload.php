@@ -10,8 +10,6 @@
 //geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 //src/validator/boostrap/ValidationformHelper.php
 
-use geunadamiano\usm\entity\User;
-
 spl_autoload_register(function($classname){
     
     $classPath= str_replace("geunadamiano\usm",__DIR__."\src",$classname);

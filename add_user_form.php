@@ -13,47 +13,45 @@ require __DIR__."/src/validator/UserValidation.php";
 require __DIR__."/src/validator/ValidationResult.php";
 require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php"; */
 
-// print_r($_POST);
+/** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
+$action = './add_user_form.php';
+$submit = 'aggiungi nuovo utente';
+
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
-    list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage)=ValidationFormHelper::getDefault();
-    list($lastName,$lastNameClass,$lastClassMessage,$lastNameMessage)=ValidationFormHelper::getDefault();
-    list($email,$emailClass,$emailClassMessage,$emailMessage)=ValidationFormHelper::getDefault();
-    list($birthday,$birthdayClass,$birthdayClassMessage,$birthdayMessage)=ValidationFormHelper::getDefault();
-
+    /** Il form viene compilato "vuoto" */
+    list($firstName,$firstNameClass,$firstNameClassMessage,$firstNameMessage) = ValidationFormHelper::getDefault();
+    list($lastName,$lastNameClass,$lastNameClassMessage,$lastNameMessage) = ValidationFormHelper::getDefault();
+    list($email,$emailClass,$emailClassMessage,$emailMessage) = ValidationFormHelper::getDefault();
+    list($birthday,$birthdayClass,$birthdayClassMessage,$birthdayMessage) = ValidationFormHelper::getDefault();
+    list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();       
 }
 
-if($_SERVER['REQUEST_METHOD']==='POST'){
-    $user = new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['birthday']);
+if ($_SERVER['REQUEST_METHOD']==='POST') {
+
+    $user = new User($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthday'],$_POST['password']);
     $val = new UserValidation($user);
-
     $firstNameValidation = $val->getError('firstName');
-    list($firstName, $firstNameClass, $firstNameClassMessage, $firstNameMessage)=ValidationFormHelper::getValidationClass($firstNameValidation);
-
     $lastNameValidation = $val->getError('lastName');
-    list($lastName, $lastNameClass, $lastNameClassMessage, $lastNameMessage)=ValidationFormHelper::getValidationClass($lastNameValidation);
-
     $emailValidation = $val->getError('email');
-    list($email, $emailClass, $emailClassMessage, $emailMessage)=ValidationFormHelper::getValidationClass($emailValidation);
-
     $birthdayValidation = $val->getError('birthday');
-    list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage)=ValidationFormHelper::getValidationClass($birthdayValidation);
+    $passwordValidation = $val->getError('password');
 
-    if($val->getIsValid()){
+    list($firstName, $firstNameClass, $firstNameClassMessage, $firstNameMessage) = ValidationFormHelper::getValidationClass($firstNameValidation);
+    list($lastName, $lastNameClass, $lastNameClassMessage, $lastNameMessage) = ValidationFormHelper::getValidationClass($lastNameValidation);
+    list($email, $emailClass, $emailClassMessage, $emailMessage) = ValidationFormHelper::getValidationClass($emailValidation);
+    list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage) = ValidationFormHelper::getValidationClass($birthdayValidation);
+    list($password, $passwordClass, $passwordClassMessage, $passwordMessage) = ValidationFormHelper::getValidationClass($passwordValidation);
+    
+    $user->setBirthday($birthday);
 
-        //echo "Salva utente";
-        $userModel=new UserModel();
+    if ($val->getIsValid()) {
+        // TODO
+        $userModel = new UserModel();
         $userModel->create($user);
-        header('location: ./list_users.php');//header-->redirect
+        header('location: ./list_users.php');
     }
-
-    //$firstName = $user->getFirstName();
-    //$firstNameClass = $firstNameValidation->getIsValid() ? 'is-valid' : 'is-invalid';
-    //$firstNameClassMessage = $firstNameValidation->getIsValid() ? 'valid-feedback' : 'invalid-feedback';
-    //$firstNameMessage = $firstNameValidation->getMessage();
-
 }
 
-include './src/view/add_user_view.php';
-
+include 'src/view/add_user_view.php';
 ?>

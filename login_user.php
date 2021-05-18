@@ -13,7 +13,8 @@ $submit = 'login';
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
     list($email,$emailClass,$emailClassMessage,$emailMessage) = ValidationFormHelper::getDefault();
-    list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();       
+    list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();
+    $loginMessage='';    
 }
 
 

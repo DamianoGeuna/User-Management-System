@@ -23,6 +23,8 @@ class User {
         $this->birthday = $birthday;
         $this->password = $password;
     }
+
+
     /**
      * Get the value of userId
      */ 
@@ -30,7 +32,6 @@ class User {
     {
         return $this->userId;
     }
-
     /**
      * Set the value of userId
      *
@@ -43,6 +44,7 @@ class User {
         return $this;
     }
 
+
     /**
      * Get the value of firstName
      */ 
@@ -50,7 +52,6 @@ class User {
     {
         return $this->firstName;
     }
-
     /**
      * Set the value of firstName
      *
@@ -63,6 +64,7 @@ class User {
         return $this;
     }
 
+
     /**
      * Get the value of lastName
      */ 
@@ -70,7 +72,6 @@ class User {
     {
         return $this->lastName;
     }
-
     /**
      * Set the value of lastName
      *
@@ -83,6 +84,7 @@ class User {
         return $this;
     }
 
+
     /**
      * Get the value of email
      */ 
@@ -90,7 +92,6 @@ class User {
     {
         return $this->email;
     }
-
     /**
      * Set the value of email
      *
@@ -103,6 +104,7 @@ class User {
         return $this;
     }
 
+
     /**
      * Get the value of birthday
      */ 
@@ -110,7 +112,6 @@ class User {
     {
         return $this->birthday;
     }
-
     /**
      * Set the value of birthday
      *
@@ -122,9 +123,6 @@ class User {
 
         return $this;
     }
-    
-
-
 
 
     /**
@@ -134,7 +132,6 @@ class User {
     {
         return $this->password;
     }
-
     /**
      * Set the value of password
      *
@@ -157,5 +154,4 @@ class User {
   
   $mario = new User();
   $mario->setfirstName('Mario')->setLastName('Rossi');
-*/   
-        ;
+*/

@@ -1,9 +1,8 @@
 <?php
 
-use geunadamiano\usm\entity\User;
 use geunadamiano\usm\model\UserModel;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
-use geunadamiano\usm\validator\UserValidation;
+
 
 require "./__autoload.php";
 
@@ -13,9 +12,28 @@ $submit = 'login';
 
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
-    /** Il form viene compilato "vuoto" */
     list($email,$emailClass,$emailClassMessage,$emailMessage) = ValidationFormHelper::getDefault();
     list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();       
+}
+
+
+if ($_SERVER['REQUEST_METHOD']==='POST') {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $userModel = new UserModel();
+    $isValid = $userModel->login($email, $password);
+
+    if ($isValid) {
+        
+        header('location: ./list_users.php');
+
+    }else{
+        $loginClass = "is-invalid";
+        $loginClassMessage="invalid-feedback";
+        $loginMessage = "Email o Password sbagliata.";
+    }
+    
 }
 
 

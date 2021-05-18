@@ -1,5 +1,6 @@
 <?php
- namespace geunadamiano\usm\validator;
+
+namespace geunadamiano\usm\validator;
  
 /**
  *  + message: string

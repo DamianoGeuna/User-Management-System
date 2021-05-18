@@ -112,19 +112,24 @@ class UserModel
     }
 
 
-    public function login(User $user)
-    {
+    public function login($email, $password){
+        $sql="Select * from User where email=:email";
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue('email', $email, PDO::PARAM_STR);
+        $pdostm->execute();
+        $result = $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,User::class,['','','','','']);
 
-        try {
-          
 
-           
-        } catch (\PDOException $e) {
-            // TODO: Evitare echo
-            echo $e->getMessage();
-
+        if(count($result) === 0){
+            return false;
+        }else{
+            if($result[0]->getPassword() === $password){
+                return true;
+            }else{
+                return false;
+            }
         }
-    }
 
+    }
     
 }

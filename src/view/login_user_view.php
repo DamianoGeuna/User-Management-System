@@ -9,31 +9,27 @@
 
 <div class="container">
         <form class="mt-4" action="<?= $action ?>" method="POST">
-
             <div class="form-group">
                <label for="">email</label>
                <input
                 value="<?= $email ?>" 
-                class="form-control <?= $emailClass ?>"  
+                class="form-control <?= $loginClass ?>"  
                 name="email"  
                 type="text">
-               <div class="<?= $emailClassMessage ?>">
-                  <?= $emailMessage ?>
-               </div> 
             </div>
 
             <div class="form-group">
                <label for="">Password</label>
                <input value="<?= $password ?>" 
-                      class="form-control <?= $passwordClass ?>"  
+                      class="form-control <?= $loginClass ?>"  
                       name="password"  
                       type="text">
+               <div class="<?= $loginClassMessage ?>">
+               <?= $loginMessage ?>
+               </div>
 
-               <div class="<?= $passwordClassMessage ?>">
-                  <?= $passwordMessage ?>
-               </div> 
             </div>
              
-             <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
+            <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
         </form>
-    </div>
+</div>

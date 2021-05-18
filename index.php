@@ -1,3 +1,3 @@
 <?php
 
-header('location: ./list_users.php');
+header('location: ./login_user.php');

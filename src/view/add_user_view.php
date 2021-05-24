@@ -71,7 +71,7 @@
 
 
             <!-- quando gli utenti vengono creati non hanno ancora un id, quindi non ha bisogno del campo nascosto -->
-             <?php if(isset($userId)) { ?>
+            <?php if(isset($userId)) { ?>
                <!-- invece quando sono in modifica di un utente -->
                <div class="form-group mt-4 p-4 border border-danger">
                <label class="text-danger">
@@ -82,9 +82,9 @@
                <input type="text" name="userId" value="<?= $userId ?>" class="form-control">
              </div>
 
-             <?php } ?>
+            <?php } ?>
              
-             <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
+            <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
         </form>
     </div>
     

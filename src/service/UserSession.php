@@ -10,7 +10,7 @@ class UserSession {
         session_start();
     }
 
-    public function autenticate(String $email, String $password)
+    public function login(String $email, String $password)
     {
         $um = new UserModel();
         $user = $um->login($email,$password);
@@ -23,19 +23,25 @@ class UserSession {
         }
     }
 
-    public function isAutenticated(){
+    public function isAutenticated()
+    {
 
         if (isset($_SESSION['user-autenticated'])){
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
         
     }
 
+    public function logout(){
+        //session_destroy
+        unset($_SESSION['user-autenticated']);
+    }
+
     public function redirect(){
 
-        if($this->isAutenticated()){
+        if(!$this->isAutenticated()){
             header('location: login_user.php');
         };
 

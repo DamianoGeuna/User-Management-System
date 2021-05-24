@@ -1,6 +1,7 @@
 <?php
 
 use geunadamiano\usm\model\UserModel;
+use geunadamiano\usm\service\UserSession;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 
 
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $userModel = new UserModel();
+    $userModel = new UserModel();//session
     $isValid = $userModel->login($email, $password);
 
     if ($isValid) {

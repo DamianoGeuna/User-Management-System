@@ -4,6 +4,7 @@ use geunadamiano\usm\entity\User;
 use geunadamiano\usm\model\UserModel;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 use geunadamiano\usm\validator\UserValidation;
+use geunadamiano\usm\service\UserSession;
 
 require "./__autoload.php"; //spiega a php come prendere le classi
 //require __DIR__."/vendor/testTools/testTool.php";
@@ -17,6 +18,7 @@ require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php"; */
 $action = './add_user_form.php';
 $submit = 'aggiungi nuovo utente';
 
+(new UserSession())->redirect();
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
     /** Il form viene compilato "vuoto" */

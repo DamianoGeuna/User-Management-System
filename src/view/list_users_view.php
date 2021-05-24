@@ -1,11 +1,12 @@
 <?php include './src/view/head.php' ?> 
 <?php include './src/view/header.php' ?>
 
-
 <div class="container">
 <div class="border p-3 my-3">
 <a class="btn btn-primary" href="./add_user_form.php">add new user</a>
+
 </div>
+
 <table class="table">
     <tr>
         <th>id</th>

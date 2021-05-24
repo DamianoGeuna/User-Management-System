@@ -4,11 +4,13 @@ use geunadamiano\usm\entity\User;
 use geunadamiano\usm\model\UserModel;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 use geunadamiano\usm\validator\UserValidation;
+use geunadamiano\usm\service\UserSession;
 
 //$action = "edit_user.php?user_id=";non cambio indirizzo controller
 //oppure input type hidden, si usa in fase di modifica; passarlo come testo
 
 require './__autoload.php';
+(new UserSession())->redirect();
 
 /** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
 $action = './edit_user.php';

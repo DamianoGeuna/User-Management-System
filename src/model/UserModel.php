@@ -33,9 +33,12 @@ class UserModel
             $pdostm->bindValue(':lastName', $user->getLastName(), PDO::PARAM_STR);
             $pdostm->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
             $pdostm->bindValue(':birthday', $user->getBirthday(), PDO::PARAM_STR);
-            $pdostm->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
+            $pdostm->bindValue(':password', md5($user->getPassword()), PDO::PARAM_STR);
 
             $pdostm->execute();
+            $last_id = $this->conn->lastInsertId();
+            
+            return $last_id;
         } catch (\PDOException $e) {
             // TODO: Evitare echo
             echo $e->getMessage();
@@ -113,23 +116,13 @@ class UserModel
 
 
     public function login($email, $password){
-        $sql="Select * from User where email=:email";
+        $sql = "SELECT * FROM User WHERE email=:email AND password=:password";
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue('email', $email, PDO::PARAM_STR);
+        $pdostm->bindValue('password', md5($password), PDO::PARAM_STR);
         $pdostm->execute();
         $result = $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,User::class,['','','','','']);
 
-
-        if(count($result) === 0){
-            return false;
-        }else{
-            if($result[0]->getPassword() === $password){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
+        return count($result)===0 ? null:$result[0];
     }
-    
 }

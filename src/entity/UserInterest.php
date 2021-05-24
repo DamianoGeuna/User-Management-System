@@ -1,14 +1,15 @@
 <?php
 namespace geunadamiano\usm\entity; 
 
-class Interest {
+class UserInterest {
 
+    private $userId;
     private $interestId;
-    private $name;
     
+    public function __construct($userId,$interestId) {
 
-    public function __construct($descrizione) {
-        $this->name = $descrizione;
+        $this->userId = $userId;
+        $this->interestId = $interestId;
     }
 
     /**
@@ -27,16 +28,15 @@ class Interest {
     public function setInterestId($interestId)
     {
         $this->interestId = $interestId;
-
         return $this;
     }
 
     /**
      * Get the value of firstName
      */ 
-    public function getName()
+    public function getUserId()
     {
-        return $this->name;
+        return $this->userId;
     }
 
     /**
@@ -44,13 +44,10 @@ class Interest {
      *
      * @return  self
      */ 
-    public function setName($name)
+    public function setUserId($userId)
     {
-        $this->name = $name;
-
+        $this->userId = $userId;
         return $this;
     }
 
 };
-
- 

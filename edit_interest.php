@@ -6,30 +6,37 @@ use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 use geunadamiano\usm\validator\InterestValidation;
 
 require "./__autoload.php";
-
 session_start();
 
-$action = './add_interest_form.php';
-$title = 'Aggiungi Interessi';
-$submit = 'Aggiungi un nuovo interesse';
+$action = './edit_interest.php';
+$title = 'Cambio Interessi';
+$submit = 'Salva modifiche';
 $model = new InteresseModel();
 
+
 if($_SERVER['REQUEST_METHOD']==='GET'){
-    list($name,$nameClass,$nameClassMessage,$nameMessage) = ValidationFormHelper::getDefault();
+    $interestId = filter_input(INPUT_GET,'interestId',FILTER_SANITIZE_NUMBER_INT);
+    $interest = $model->readOne($interestId);
+    list($name,$nameClass,$nameClassMessage,$nameMessage) = ValidationFormHelper::getDefault($interest->getName());
+
+
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
+    $interestId = filter_input(INPUT_POST,'interestId',FILTER_SANITIZE_NUMBER_INT);
     $interest = new Interest($_POST['name']);
+    $interest->setInterestId($interestId);
+
     $val = new InterestValidation($interest);
+
     $interestValidation = $val->getError('name');
-    print_r($interestValidation);
+
     list($name,$nameClass,$nameClassMessage,$nameMessage) = ValidationFormHelper::getValidationClass($interestValidation);
 
 
     if ($val->getIsValid()) {
-
-        $model->create($interest);
-        
+        // TODO
+        $model->update($interest);
         header('location: ./list_interests.php');
     }
 
@@ -38,8 +45,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 if($_SESSION['connected']==false){
     header('location: ./login_user.php');
-}
+}    
 
 include 'src/view/add_interest_view.php';
 
-
+?>

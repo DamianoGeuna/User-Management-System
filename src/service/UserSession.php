@@ -4,6 +4,8 @@ namespace geunadamiano\usm\service;
 
 use geunadamiano\usm\model\UserModel;
 
+require "../../__autoload.php";
+
 class UserSession {
 
     public function __construct(){
@@ -23,7 +25,7 @@ class UserSession {
         }
     }
 
-    public function isAutenticated()
+    /* public function isAutenticated()
     {
 
         if (isset($_SESSION['user-autenticated'])){
@@ -45,5 +47,5 @@ class UserSession {
             header('location: login_user.php');
         };
 
-    }
+    } */
 }

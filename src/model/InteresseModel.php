@@ -2,6 +2,7 @@
 namespace geunadamiano\usm\model;
 use \PDO;
 use geunadamiano\usm\entity\Interest;
+use geunadamiano\usm\entity\UserInterest;
 
 
 class InteresseModel
@@ -11,7 +12,7 @@ class InteresseModel
     public function __construct()
     {
         try {
-            $this->conn = new PDO('mysql:dbname=corso_formarete;host=localhost', 'root', '');
+            $this->conn = new PDO('mysql:dbname=usm_2;host=localhost', 'root', '');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             // TODO: togliere echo
@@ -71,6 +72,31 @@ class InteresseModel
         }
     }
 
+    public function readUserInterest($userId){
+        $sql = "SELECT * FROM user_interest WHERE userId=:userId";
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
+        $pdostm->execute();
+        $result = $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,Interest::class,['']);
+
+        return count($result) === 0 ? null:$result[0];
+    }
+
+    public function extractInterestName($id){
+
+        $obj = $this->readUserInterest($id);
+
+        if(is_null($obj)){
+            $result = "";
+        }else{
+            $interestId = $obj->getInterestId();
+            $interestObj = $this->readOne($interestId);
+            $result = $interestObj->getName();
+        }
+        
+        return $result;
+    }
+
 
     public function update($interest)
     {
@@ -103,6 +129,14 @@ class InteresseModel
         }
 
   
+    }
+
+    public function deleteUserInterest($interestId){
+        $sql = "DELETE FROM user_interest WHERE interestId=:interestId;";
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue(':interestId',$interestId,PDO::PARAM_INT);
+        $pdostm->execute();
+
     }
 
 }

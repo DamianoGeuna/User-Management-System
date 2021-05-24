@@ -5,11 +5,16 @@ use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 
 
 require "./__autoload.php";
+session_start();
 
 /** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
 $title='Login';
 $action = './login_user.php';
 $submit = 'login';
+
+$_SESSION['connected'] = false;
+$_SESSION['username'] = "";
+$_SESSION['user'] = null;
 
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
@@ -23,17 +28,22 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $userModel = new UserModel();//session
+    $userModel = new UserModel();
     $isValid = $userModel->login($email, $password);
 
     if ($isValid) {
         
+        $_SESSION['connected'] = true;
+
+        $emails = explode("@",$isValid->getEmail());
+        $_SESSION['username'] = $emails[0];
+        $_SESSION['user'] = $isValid;
         header('location: ./list_users.php');
 
     }else{
         $loginClass = "is-invalid";
         $loginClassMessage="invalid-feedback";
-        $loginMessage = "Email o Password sbagliata.";
+        $loginMessage = "Email o Password errata.";
     }
     
 }

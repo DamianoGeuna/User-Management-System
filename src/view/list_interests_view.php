@@ -1,6 +1,6 @@
 <?php include './src/view/head.php' ?> 
 <?php include './src/view/header.php' ?>
-<?php include './src/view/login_user_view.php' ?>
+<!-- <?php include './src/view/login_user_view.php' ?> -->
 
 <div class="container">
 

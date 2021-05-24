@@ -12,7 +12,7 @@ require __DIR__."/../../vendor/testTools/testTool.php";
 $us = new UserSession();
 
 
-$user = $us->autenticate('luigi.russo@email.com','qwerty');
+$user = $us->login('luigi.russo@email.com','qwerty');
 
 print_r($_SESSION['user_autenticated']);
 //assertEquals($_SESSION['user_autenticated'],$user);

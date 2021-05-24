@@ -69,6 +69,16 @@
                </div> 
             </div>
 
+            <div class="form-group mt-3">
+                  <label for="interest">Scegli un interesse:</label>
+                  <select name="interest" id="interest">
+                     <option value="<?= $interest ?>"> - Scegli un interesse - </option>
+                     <?php foreach($interestModel->readInterests() as $interest){ ?>
+                     <option value="<?= $interest->getInterestId() ?>"> <?= $interest->getName()?> </option>
+                     <?php } ?>
+                  </select>
+            </div>
+
 
             <!-- quando gli utenti vengono creati non hanno ancora un id, quindi non ha bisogno del campo nascosto -->
             <?php if(isset($userId)) { ?>

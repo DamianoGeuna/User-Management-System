@@ -2,6 +2,7 @@
 
 use geunadamiano\usm\entity\User;
 use geunadamiano\usm\model\UserModel;
+use geunadamiano\usm\model\InteresseModel;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 use geunadamiano\usm\validator\UserValidation;
 use geunadamiano\usm\service\UserSession;
@@ -13,10 +14,13 @@ require "./__autoload.php"; //spiega a php come prendere le classi
 require __DIR__."/src/validator/UserValidation.php";
 require __DIR__."/src/validator/ValidationResult.php";
 require __DIR__."/src/validator/bootstrap/ValidationFormHelper.php"; */
-
 /** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
 $action = './add_user_form.php';
+$type = '';
+$title = 'ADD USER';
 $submit = 'aggiungi nuovo utente';
+$userModel = new UserModel();
+$interestModel = new InteresseModel();
 
 (new UserSession())->redirect();
 if($_SERVER['REQUEST_METHOD']==='GET'){
@@ -26,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
     list($lastName,$lastNameClass,$lastNameClassMessage,$lastNameMessage) = ValidationFormHelper::getDefault();
     list($email,$emailClass,$emailClassMessage,$emailMessage) = ValidationFormHelper::getDefault();
     list($birthday,$birthdayClass,$birthdayClassMessage,$birthdayMessage) = ValidationFormHelper::getDefault();
-    list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();       
+    list($password,$passwordClass,$passwordClassMessage,$passwordMessage) = ValidationFormHelper::getDefault();
 }
 
 if ($_SERVER['REQUEST_METHOD']==='POST') {
@@ -44,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
     list($email, $emailClass, $emailClassMessage, $emailMessage) = ValidationFormHelper::getValidationClass($emailValidation);
     list($birthday, $birthdayClass, $birthdayClassMessage, $birthdayMessage) = ValidationFormHelper::getValidationClass($birthdayValidation);
     list($password, $passwordClass, $passwordClassMessage, $passwordMessage) = ValidationFormHelper::getValidationClass($passwordValidation);
-    
+        
     $user->setBirthday($birthday);
 
     if ($val->getIsValid()) {

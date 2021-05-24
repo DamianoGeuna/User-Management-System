@@ -54,7 +54,8 @@ $sqlToInsertUserQuery2 = "INSERT INTO Interest (interestId, name) VALUES (1, 'DI
                         INSERT INTO Interest (interestId, name) VALUES (2, 'FOTOGRAFIA');
                         INSERT INTO Interest (interestId, name) VALUES (3, 'SPORT');
                         INSERT INTO Interest (interestId, name) VALUES (4, 'VIAGGIO');
-                        INSERT INTO Interest (interestId, name) VALUES (5, 'VIDEOGIOCHI' );";
+                        INSERT INTO Interest (interestId, name) VALUES (5, 'MANGIARE');
+                        INSERT INTO Interest (interestId, name) VALUES (6, 'VIDEOGIOCHI' );";
 
 $conn->exec($sqlToInsertUserQuery2);
 

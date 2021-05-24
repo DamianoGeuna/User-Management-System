@@ -70,9 +70,9 @@
             </div>
 
             <div class="form-group mt-3">
-                  <label for="interest">Scegli un interesse:</label>
+                  <label for="interest">Cosa ti piace?</label>
                   <select name="interest" id="interest">
-                     <option value="<?= $interest ?>"> - Scegli un interesse - </option>
+                     <option value="<?= $interest ?>"> - Cosa ti piace? - </option>
                      <?php foreach($interestModel->readInterests() as $interest){ ?>
                      <option value="<?= $interest->getInterestId() ?>"> <?= $interest->getName()?> </option>
                      <?php } ?>

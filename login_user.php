@@ -1,7 +1,6 @@
 <?php
 
 use geunadamiano\usm\model\UserModel;
-use geunadamiano\usm\service\UserSession;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 
 

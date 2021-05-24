@@ -6,7 +6,7 @@ use geunadamiano\usm\model\DB;
 $conn = DB::serverConnectionWithoutDatabase();
 $dbname = AppConfig::DB_NAME;
 
-$sql = "DROP DATABASE if exists $dbname;
+$sql1 = "DROP DATABASE if exists $dbname;
         CREATE database if not exists $dbname; 
         use $dbname;
 
@@ -21,9 +21,9 @@ $sql = "DROP DATABASE if exists $dbname;
             UNIQUE INDEX `email` (`email`)
         )";
 
-$conn->exec($sql);
+$conn->exec($sql1);
 
-$sqlToInsertUserQuery = "INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (1, 'Adamo', 'ROSSI', 'adamo.rossi@email.com', '2002-06-12', 'qwerty');
+$sqlToInsertUserQuery1 = "INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (1, 'Adamo', 'ROSSI', 'adamo.rossi@email.com', '2002-06-12', 'qwerty');
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (2, 'Mario', 'FERRARI', 'mario.ferrari@email.com', '2001-06-12', 'qwerty');
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (3, 'Luigi', 'RUSSO', 'luigi.russo@email.com', '2007-08-06', 'qwerty');
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (4, 'Achille', 'BIANCHI', 'achille.bianchi@email.com', '2006-03-14', 'qwerty');
@@ -40,4 +40,33 @@ $sqlToInsertUserQuery = "INSERT INTO User (userId, firstName, lastName, email, b
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (15, 'Zeno', 'ROMANO', 'zeno.romano@email.com', '2001-07-21', 'qwerty');"; 
 
 
-$conn->exec($sqlToInsertUserQuery);
+$conn->exec($sqlToInsertUserQuery1);
+
+$sql2 = "use $dbname;
+        CREATE table if not exists Interest (
+            interestId int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            name varchar(255) NOT NULL
+        )";
+
+$conn->exec($sql2);
+
+$sqlToInsertUserQuery2 = "INSERT INTO Interest (interestId, name) VALUES (1, 'DISEGNO');
+                        INSERT INTO Interest (interestId, name) VALUES (2, 'FOTOGRAFIA');
+                        INSERT INTO Interest (interestId, name) VALUES (3, 'SPORT');
+                        INSERT INTO Interest (interestId, name) VALUES (4, 'VIAGGIO');
+                        INSERT INTO Interest (interestId, name) VALUES (5, 'VIDEOGIOCHI' );";
+
+$conn->exec($sqlToInsertUserQuery2);
+
+$sql3 = "use $dbname;
+        CREATE table if not exists User_Interest (
+            userId int(10) NOT NULL,
+            interestId int(10) NOT NULL,
+            FOREIGN KEY (userId) REFERENCES User(userId),
+            FOREIGN KEY (interestId) REFERENCES Interest(interestId),
+            CONSTRAINT User_Interest UNIQUE (userId,interestId)
+        )";
+
+
+$conn->exec($sql3);
+

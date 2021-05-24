@@ -7,6 +7,7 @@ use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 require "./__autoload.php";
 
 /** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
+$title='Login';
 $action = './login_user.php';
 $submit = 'login';
 

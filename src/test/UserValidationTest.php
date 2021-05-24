@@ -8,7 +8,7 @@ require __DIR__."/../entity/User.php";
 require __DIR__."/../validator/UserValidation.php";
 require __DIR__."/../validator/ValidationResult.php";
 
-$user = new User('Mario','Draghi','mg@prez.gov','2000-01-01');
+$user = new User('Mario','Draghi','mg@prez.gov','2000-01-01','password');
 
 $val = new UserValidation($user);
 //$val->validate();
@@ -19,7 +19,7 @@ assertEquals(UserValidation::FIRST_NAME_ERROR_NONE_MSG, $firstNameValidation->ge
 
 //--------------------------Spazio Vuoto-------------------------
 
-$user = new User('','Draghi','mg@prez.gov','2000-01-01');
+$user = new User('','Draghi','mg@prez.gov','2000-01-01','password');
 $val = new UserValidation($user);
 $firstNameValidation = $val->getError('firstName');
 assertEquals(false, $firstNameValidation->getIsValid());
@@ -27,7 +27,7 @@ assertEquals(UserValidation::FIRST_NAME_ERROR_REQUIRED_MSG,$firstNameValidation-
 
 //Tanti Spazi Vuoti
 
-$user = new User('      ','Draghi','mg@prez.gov','2000-01-01');
+$user = new User('      ','Draghi','mg@prez.gov','2000-01-01','password');
 $val = new UserValidation($user);
 $firstNameValidation = $val->getError('firstName');
 assertEquals(false, $firstNameValidation->getIsValid());
@@ -35,7 +35,7 @@ assertEquals(UserValidation::FIRST_NAME_ERROR_REQUIRED_MSG,$firstNameValidation-
 
 //------------------------Null-------------------------------
 
-$user = new User(null,'Draghi','mg@prez.gov','2000-01-01');
+$user = new User(null,'Draghi','mg@prez.gov','2000-01-01','password');
 $val = new UserValidation($user);
 $firstNameValidation = $val->getError('firstName');
 assertEquals(false, $firstNameValidation->getIsValid());

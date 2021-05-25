@@ -1,4 +1,5 @@
 <?php
+
 namespace geunadamiano\usm\validator;
 use geunadamiano\usm\entity\Interest;
 
@@ -20,7 +21,6 @@ class InterestValidation {
 
     private function validate()
     {   
-        //$this->firstNameResult =  $this->validateFirstName();
         $this->errors['name']  = $this->validateInterest();
     }
 

@@ -9,6 +9,7 @@ $dbname = AppConfig::DB_NAME;
 $sql1 = "DROP DATABASE if exists $dbname;
         CREATE database if not exists $dbname; 
         use $dbname;
+        
         CREATE table if not exists User (
             userId int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
             firstName varchar(255) NOT NULL,
@@ -34,8 +35,7 @@ $sqlToInsertUserQuery1 = "INSERT INTO User (userId, firstName, lastName, email, 
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (11, 'Onorato', 'ROSSI', 'onorato.rossi@email.com', '2005-06-29','5a4d5215fa1fb5435e5322dbeb60dd3c');
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (12, 'Silvio', 'FERRARI', 'silvio.ferrari@email.com', '2005-04-11','773b3244a8d15ee98a8cb30177c6e6e0');
                             INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (13, 'Tancredi', 'RUSSO', 'tancredi.russo@email.com', '2000-07-30','5f4dcc3b5aa765d61d8327deb882cf99');
-                            INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (14, 'Valter', 'BIANCHI', 'valter.bianchi@email.com', '2000-06-10','0d2004b1e26842944f8bd6f5c9369569'); 
-                            INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (15, 'Alberto', 'VACCA', 'mnb.alter89@gmail.com', '1989-07-21','aa8559d8dd0b5bb8973a7586f05325ca');";
+                            INSERT INTO User (userId, firstName, lastName, email, birthday, password) VALUES (14, 'Valter', 'BIANCHI', 'valter.bianchi@email.com', '2000-06-10','0d2004b1e26842944f8bd6f5c9369569');";
                             
 
 

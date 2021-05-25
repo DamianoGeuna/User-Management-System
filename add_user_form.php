@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         // TODO
 
         $lastId = $userModel->create($user);
-        $interestModel->assignsInterest($lastId,$interest);
+        //$interestModel->assignsInterest($lastId,$interest); SQLSTATE[42S22]: Column not found: 1054 ?
 
         /* $userModel = new UserModel();
         $userModel->create($user); */

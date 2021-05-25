@@ -18,6 +18,3 @@ spl_autoload_register(function($classname){
     //echo $classPath;
     require_once $classPath;
 });
-
-//$u = new User('a','b','c','d');
-//print_r($u);

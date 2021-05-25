@@ -6,7 +6,6 @@ use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 use geunadamiano\usm\validator\InterestValidation;
 
 require "./__autoload.php";
-
 session_start();
 
 $action = './add_interest_form.php';

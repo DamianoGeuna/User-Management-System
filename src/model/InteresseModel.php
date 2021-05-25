@@ -77,7 +77,7 @@ class InteresseModel
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
         $pdostm->execute();
-        $result = $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,Interest::class,['']);
+        $result = $pdostm->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,UserInterest::class,['']);
 
         return count($result) === 0 ? null:$result[0];
     }
@@ -100,7 +100,7 @@ class InteresseModel
 
     public function update($interest)
     {
-        $sql = "UPDATE User SET name=:name WHERE interestId=:interestId;";
+        $sql = "UPDATE interest SET name=:name WHERE interestId=:interestId;";//modificare qui?
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue(':name', strtoupper($interest->getName()), PDO::PARAM_STR);
         $pdostm->bindValue(':interestId', $interest->getInterestId(), PDO::PARAM_INT);

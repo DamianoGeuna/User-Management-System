@@ -20,10 +20,10 @@
                <input type="hidden" name="interestId" value="<?= $interestId ?>" class="form-control">
                </input>
 
-                <?php } ?>
+               <?php } ?>
 
-                <button class="btn btn-success mt-3" type="submit"><?= $submit ?></button>
-                <a class="btn btn-primary mt-3" href="./list_interests.php">back</a>
+               <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
+               <a class="btn btn-secondary mt-3" href="./list_interests.php">Indietro</a>
 
             </div>
 

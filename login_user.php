@@ -13,8 +13,6 @@ $action = './login_user.php';
 $submit = 'login';
 
 $_SESSION['connected'] = false;
-$_SESSION['username'] = "";
-$_SESSION['user'] = null;
 
 if($_SERVER['REQUEST_METHOD']==='GET'){
     
@@ -35,9 +33,6 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         
         $_SESSION['connected'] = true;
 
-        $emails = explode("@",$isValid->getEmail());
-        $_SESSION['username'] = $emails[0];
-        $_SESSION['user'] = $isValid;
         header('location: ./list_users.php');
 
     }else{

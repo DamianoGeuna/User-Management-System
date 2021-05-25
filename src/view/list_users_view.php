@@ -7,6 +7,7 @@
 <a class="btn btn-primary" href="./add_user_form.php">add new user</a>
 <a class="btn btn-primary" href="./login_user.php">logout</a>
 <a class="btn btn-primary" href="./add_interest_form.php">aggiungi interesse</a>
+<a class="btn btn-primary" href="./list_interests.php">Lista interessi</a>
 
 
 </div>

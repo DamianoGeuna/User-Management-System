@@ -13,6 +13,6 @@ if($_SESSION['connected']==false){
     header('location: ./login_user.php');
 }  
 
-    include './src/view/list_interests_view.php';
+include './src/view/list_interests_view.php';
 
 ?>

@@ -1,12 +1,11 @@
 <?php include './src/view/head.php' ?> 
 <?php include './src/view/header.php' ?>
-<!-- <?php include './src/view/login_user_view.php' ?> -->
 
 <div class="container">
 
 <div class="border p-3 my-3">
-<a class="btn btn-primary" href="./list_users.php">Lista Interessi</a>
-<a class="btn btn-primary" href="./create_interest.php">Nuovo Interesse</a>
+<a class="btn btn-primary" href="./list_users.php">Lista Utenti</a>
+<a class="btn btn-primary" href="./add_interest_form.php">Nuovo Interesse</a>
 
 </div>
 

@@ -1,7 +1,7 @@
 <?php include './src/view/head.php' ?> 
 <?php include './src/view/header.php' ?>
     
-    <div class="container">
+<div class="container">
     <!-- valore diverso da dove partiamo-->
     <!--form action"$action=add_user_form.php, va su se stessa"
     mettendo action="$action" in base a clicco si modifica-->
@@ -72,9 +72,9 @@
             <div class="form-group mt-3">
                   <label for="interest">Cosa ti piace?</label>
                   <select name="interest" id="interest">
-                     <option value="<?= $interest ?>"> - Cosa ti piace? - </option>
-                     <?php foreach($interestModel->readInterests() as $interest){ ?>
-                     <option value="<?= $interest->getInterestId() ?>"> <?= $interest->getName()?> </option>
+                     <option value="0"> <?= $nointerest ?></option>
+                     <?php foreach($interesseModel->readAll() as $interest){ ?>
+                     <option value="<?= $int->getInterestId()?>" <?= $int->getInterestId() == $interest ? 'selected':'' ?>> <?= $int->getName()?> </option>
                      <?php } ?>
                   </select>
             </div>
@@ -86,22 +86,23 @@
 
                <!-- invece quando sono in modifica di un utente -->
 
-
                <!-- <div class="form-group mt-4 p-4 border border-danger">
                <label class="text-danger">
                   Questo campo è visibile motivi didattici in realtà dovrebbe essere un <b>input[type=hidden]</b> <br> 
                   serve a inviare via POST, il valore dello <b>userId</b> dell'istanza di User da aggiornare sul database<br>
                </label>
                <label class="d-block text-bold">id dell'utente che sto modificando</label> -->
+               <!-- </div> -->
 
-               <input type="hidden" name="userId" value="<?= $userId ?>" class="form-control">
-             <!-- </div> -->
+               <input type="hidden" name="userId" value="<?= $userId ?>" class="form-control"></input>
 
             <?php } ?>
              
-            <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
-        </form>
-    </div>
+         <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
+         <a class="btn btn-secondary mt-3" href="./list_users.php">Indietro</a>
+
+      </form>
+   </div>
     
 </body>
 </html>

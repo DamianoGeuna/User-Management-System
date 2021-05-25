@@ -22,8 +22,8 @@
 
                 <?php } ?>
 
-                <button class="btn btn-primary mt-3" type="submit"><?= $submit ?></button>
-                <a class="btn btn-primary mt-3" href="./list_interests_view.php">indietro</a>
+                <button class="btn btn-success mt-3" type="submit"><?= $submit ?></button>
+                <a class="btn btn-primary mt-3" href="./list_interests.php">back</a>
 
             </div>
 

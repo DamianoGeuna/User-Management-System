@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $interest = new Interest($_POST['name']);
     $val = new InterestValidation($interest);
     $interestValidation = $val->getError('name');
-    print_r($interestValidation);
+    //print_r($interestValidation);
     list($name,$nameClass,$nameClassMessage,$nameMessage) = ValidationFormHelper::getValidationClass($interestValidation);
 
 

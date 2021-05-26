@@ -1,7 +1,11 @@
 <?php
 
+
 namespace geunadamiano\usm\validator;
+
 use geunadamiano\usm\entity\Interest;
+
+require './__autoload.php';
 
 class InterestValidation {
     public const NAME_ERROR_NONE_MSG = 'Interesse inserito';

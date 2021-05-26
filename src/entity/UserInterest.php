@@ -12,38 +12,23 @@ class UserInterest {
         $this->interestId = $interestId;
     }
 
-    /**
-     * Get the value of userId
-     */ 
     public function getInterestId()
     {
         return $this->interestId;
     }
 
-    /**
-     * Set the value of userId
-     *
-     * @return  self
-     */ 
+
     public function setInterestId($interestId)
     {
         $this->interestId = $interestId;
         return $this;
     }
-
-    /**
-     * Get the value of firstName
-     */ 
+ 
     public function getUserId()
     {
         return $this->userId;
     }
 
-    /**
-     * Set the value of firstName
-     *
-     * @return  self
-     */ 
     public function setUserId($userId)
     {
         $this->userId = $userId;

@@ -7,8 +7,8 @@ class Interest {
     private $name;
     
 
-    public function __construct($nome) {
-        $this->name = $nome;
+    public function __construct($name) {
+        $this->name = $name;//cambiare???
     }
 
     

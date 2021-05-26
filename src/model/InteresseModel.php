@@ -27,7 +27,7 @@ class InteresseModel
             $pdostm = $this->conn->prepare('INSERT INTO interest (name)
             VALUES (:name);');
 
-            $pdostm->bindValue(':name', $interest->getName(), PDO::PARAM_STR);
+            $pdostm->bindValue(':name', $interest->getName(), PDO::PARAM_STR);//correzione se qualcuno mette tutto maiusc?
 
             $pdostm->execute();
 
@@ -45,12 +45,16 @@ class InteresseModel
     }
 
     public function assignsInterest($userId, $interestId) {
-        $sql = "INSERT INTO user_interest (userId,interestId)
-        VALUES (:userId,:interestId);";
-        $pdostm = $this->conn->prepare($sql);
-        $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
-        $pdostm->bindValue('interestId', $interestId, PDO::PARAM_INT);
-        $pdostm->execute();
+        if($interestId != 0){
+            $sql = "INSERT INTO user_interest (userId,interestId)
+            VALUES (:userId,:interestId);";
+            $pdostm = $this->conn->prepare($sql);
+            $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
+            $pdostm->bindValue('interestId', $interestId, PDO::PARAM_INT);
+            $pdostm->execute();
+        }else{
+            $this->deleteUserInterest($userId);
+        }
     }
 
     public function readOne($interestId)

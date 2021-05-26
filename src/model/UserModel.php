@@ -2,7 +2,7 @@
 
 namespace geunadamiano\usm\model;
 use \PDO;
-use geunadamiano\usm\config\local\AppConfig;
+//use geunadamiano\usm\config\local\AppConfig;
 use geunadamiano\usm\entity\User;
 
 class UserModel
@@ -13,7 +13,7 @@ class UserModel
     public function __construct()
     {
         try {
-            $this->conn = new PDO('mysql:dbname='.AppConfig::DB_NAME.';host='.AppConfig::DB_HOST, AppConfig::DB_USER, AppConfig::DB_PASSWORD);
+            $this->conn = new PDO('mysql:dbname=usm_2;host=localhost', 'root', '');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {//qualcosa potrebbe andare storto
             // TODO: togliere echo
@@ -98,6 +98,8 @@ class UserModel
         }
     }
 
+    //Mettere qui update password
+
     public function delete(int $user_id):bool
     {
         $sql = "delete from User where userId=:user_id ";
@@ -112,6 +114,19 @@ class UserModel
         } else if($pdostm->rowCount() === 1){
             return true;
         }  
+    }
+
+    public function deleteUserInterest($user_id){
+        $sql = "DELETE FROM user_interest WHERE userId=:user_id;";
+        $pdostm = $this->conn->prepare($sql);
+        $pdostm->bindValue(':user_id',$user_id,PDO::PARAM_INT);
+        $pdostm->execute();
+        if($pdostm->rowCount() === 0) {
+            return false;
+        } else if($pdostm->rowCount() === 1){
+            return true;
+        }
+
     }
 
 

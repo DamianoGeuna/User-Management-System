@@ -17,7 +17,7 @@ $action = './edit_user.php';
 $type = 'hidden';
 $title = 'Modifica Utente';
 $nointerest = 'Cosa ti piace?';
-$submit = 'sava modifiche';
+$submit = 'salva modifiche';
 $userModel = new UserModel();
 $interestModel = new InteresseModel();
 
@@ -77,6 +77,8 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         // TODO
         $userModel = new UserModel();
         $userModel->update($user);
+        $userModel->deleteUserInterest($userId);
+        $interestModel->assignsInterest($userId,$intId);
         header('location: ./list_users.php');
     }
 

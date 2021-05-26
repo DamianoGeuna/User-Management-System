@@ -14,7 +14,8 @@ spl_autoload_register(function($classname){
     
     $classPath= str_replace("geunadamiano\usm",__DIR__."\src",$classname);
     $classPath = str_replace("\\", DIRECTORY_SEPARATOR, $classPath).".php";
-
-    //echo $classPath;
+    
+   
+    //echo "<br>$classPath<br>";
     require_once $classPath;
 });

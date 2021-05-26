@@ -3,7 +3,9 @@
 use geunadamiano\usm\entity\Interest;
 use geunadamiano\usm\model\InteresseModel;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
-use geunadamiano\usm\validator\InterestValidation;
+//use geunadamiano\usm\validator\InterestValidation;
+
+//use geunadamiano\usm\validator\InterestValidation;
 
 require "./__autoload.php";
 session_start();
@@ -19,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $interest = new Interest($_POST['name']);
-    $val = new InterestValidation($interest);
+    $val = new geunadamiano\usm\validator\InterestValidation($interest);
     $interestValidation = $val->getError('name');
     //print_r($interestValidation);
     list($name,$nameClass,$nameClassMessage,$nameMessage) = ValidationFormHelper::getValidationClass($interestValidation);

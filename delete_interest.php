@@ -23,6 +23,6 @@ if($interestId){
 
 
 }else{
-    $invaliUserId = false;
+    $invalidInterestId = false;
 }
 

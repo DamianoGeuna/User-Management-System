@@ -1,6 +1,7 @@
 <?php
 
 use geunadamiano\usm\model\UserModel;
+use geunadamiano\usm\service\UserSession;
 use geunadamiano\usm\validator\bootstrap\ValidationFormHelper;
 
 
@@ -10,7 +11,7 @@ session_start();
 /** $action rappresentà l'indirizzo a cui verranno inviati i dati del form */
 $title='Login';
 $action = './login_user.php';
-$submit = 'login';
+$submit = 'Login';
 
 $_SESSION['connected'] = false;
 

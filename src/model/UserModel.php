@@ -102,7 +102,8 @@ class UserModel
 
     public function delete(int $user_id):bool
     {
-        $sql = "delete from User where userId=:user_id ";
+        $sql = "DELETE FROM user_interest WHERE userId=:user_id;
+                DELETE FROM User WHERE userId=:user_id;";
         
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue(':user_id',$user_id,PDO::PARAM_INT);//parametro che sto passando lo tratto come intero

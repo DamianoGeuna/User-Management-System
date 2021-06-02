@@ -46,7 +46,7 @@ class InteresseModel
 
     public function assignsInterest($userId, $interestId) {
         if($interestId != 0){
-            $sql = "INSERT INTO user_interest (userId,interestId)
+            $sql = "INSERT INTO User_Interest (userId,interestId)
             VALUES (:userId,:interestId);";
             $pdostm = $this->conn->prepare($sql);
             $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
@@ -77,7 +77,7 @@ class InteresseModel
     }
 
     public function readUserInterest($userId){
-        $sql = "SELECT * FROM user_interest WHERE userId=:userId";
+        $sql = "SELECT * FROM User_Interest WHERE userId=:userId";
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue('userId', $userId, PDO::PARAM_INT);
         $pdostm->execute();
@@ -104,7 +104,7 @@ class InteresseModel
 
     public function update($interest)
     {
-        $sql = "UPDATE interest SET name=:name WHERE interestId=:interestId;";//modificare qui?
+        $sql = "UPDATE Interest SET name=:name WHERE interestId=:interestId;";//modificare qui?
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue(':name', strtoupper($interest->getName()), PDO::PARAM_STR);
         $pdostm->bindValue(':interestId', $interest->getInterestId(), PDO::PARAM_INT);
@@ -119,7 +119,7 @@ class InteresseModel
 
     public function delete(int $interestId):bool
     {
-        $sql = "DELETE FROM user_interest WHERE interestId=:interestId;
+        $sql = "DELETE FROM User_Interest WHERE interestId=:interestId;
                 DELETE FROM Interest WHERE interestId=:interestId;";
         
         $pdostm = $this->conn->prepare($sql);
@@ -136,7 +136,7 @@ class InteresseModel
     }
 
     public function deleteUserInterest($interestId){
-        $sql = "DELETE FROM user_interest WHERE interestId=:interestId;";
+        $sql = "DELETE FROM User_Unterest WHERE interestId=:interestId;";
         $pdostm = $this->conn->prepare($sql);
         $pdostm->bindValue(':interestId',$interestId,PDO::PARAM_INT);
         $pdostm->execute();
